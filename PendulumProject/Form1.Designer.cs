@@ -32,7 +32,9 @@ namespace PendulumProject
             this.startButton = new System.Windows.Forms.Button();
             this.pendulumPictureBox = new System.Windows.Forms.PictureBox();
             this.stopButton = new System.Windows.Forms.Button();
+            this.rePendulumPictureBox = new System.Windows.Forms.PictureBox();
             ((System.ComponentModel.ISupportInitialize)(this.pendulumPictureBox)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.rePendulumPictureBox)).BeginInit();
             this.SuspendLayout();
             // 
             // startButton
@@ -65,17 +67,28 @@ namespace PendulumProject
             this.stopButton.UseVisualStyleBackColor = true;
             this.stopButton.Click += new System.EventHandler(this.HandleStop_Click);
             // 
+            // rePendulumPictureBox
+            // 
+            this.rePendulumPictureBox.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.rePendulumPictureBox.Location = new System.Drawing.Point(305, 27);
+            this.rePendulumPictureBox.Name = "rePendulumPictureBox";
+            this.rePendulumPictureBox.Size = new System.Drawing.Size(250, 350);
+            this.rePendulumPictureBox.TabIndex = 3;
+            this.rePendulumPictureBox.TabStop = false;
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.rePendulumPictureBox);
             this.Controls.Add(this.stopButton);
             this.Controls.Add(this.pendulumPictureBox);
             this.Controls.Add(this.startButton);
             this.Name = "Form1";
             this.Text = "Form1";
             ((System.ComponentModel.ISupportInitialize)(this.pendulumPictureBox)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.rePendulumPictureBox)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -85,6 +98,7 @@ namespace PendulumProject
         private System.Windows.Forms.Button startButton;
         private System.Windows.Forms.PictureBox pendulumPictureBox;
         private System.Windows.Forms.Button stopButton;
+        private System.Windows.Forms.PictureBox rePendulumPictureBox;
     }
 }
 

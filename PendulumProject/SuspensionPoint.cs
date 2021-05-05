@@ -8,32 +8,36 @@ namespace PendulumProject
 {
     public class SuspensionPoint : Point
     {
-        private double y;
+        private readonly Func<double, double, double, double> biasCalculator;
 
-        private Func<double, double, double, double> biasCalcilator;
+        public override double Y 
+        {
+            get => base.Y + this.YBias; 
+            set => base.Y = value;
+        }
         public double YBias { get; private set; } = 0;
         public double A { get; set; }
         public double W { get; set; }
         public SuspensionPoint(
             double A = 2, 
             double W = 3,
-            Func<double, double, double, double> biasCalcilator = null
+            Func<double, double, double, double> biasCalculator = null
             )
         {
-            if(biasCalcilator == null)
+            if(biasCalculator == null)
             {
-                biasCalcilator = this.CalculateBias;
+                biasCalculator = this.CalculateBias;
             }
 
             this.A = A;
             this.W = W;
-            this.biasCalcilator = biasCalcilator;
+            this.biasCalculator = biasCalculator;
         }
 
         public double RecalculateYBias(double time)
         {
             this.YBias = 
-                this.biasCalcilator?.Invoke(time, this.A, this.W) 
+                this.biasCalculator?.Invoke(time, this.A, this.W) 
                 ?? this.YBias;
             return this.YBias;
         }
