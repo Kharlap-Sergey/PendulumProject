@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Diagnostics;
 using System.Drawing;
 using System.Linq;
 using System.Text;
@@ -103,6 +104,16 @@ namespace PendulumProject
                   (float)(y + r));
 
             return rect;
+        }
+
+        private void HelpBtnClick_Click(object sender, EventArgs e)
+        {
+            Process process = new Process();
+            ProcessStartInfo startInfo = new ProcessStartInfo();
+            process.StartInfo = startInfo;
+
+            startInfo.FileName = @"C:\Users\Siarhei.Kharlap\Downloads\pdf-test.pdf";
+            process.Start();
         }
     }
 }
