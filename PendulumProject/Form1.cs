@@ -17,6 +17,7 @@ namespace PendulumProject
         private double speedCorrector = 1;
         private EventLoop eventLoop;
         private double suspensionPointRadius = 2;
+        private bool isStarted = false;
 
         public Form1()
         {
@@ -25,6 +26,14 @@ namespace PendulumProject
 
         private void HandleStart_Click(object sender, EventArgs e)
         {
+            if (isStarted)
+            {
+                this.ShowError("The program is already started!");
+                return;
+            }
+
+            this.isStarted = true;
+
             this.eventLoop = new EventLoop((float)0.1);
             var startTime = DateTime.Now;
             var sp = new SuspensionPoint();
@@ -55,7 +64,13 @@ namespace PendulumProject
 
         private void HandleStop_Click(object sender, EventArgs e)
         {
+            if (!this.isStarted)
+            {
+                this.ShowError("There isn't something to stop");
+                return;
+            }
             this.eventLoop?.Stop();
+            this.isStarted = false;
         }
 
         private void Draw(PictureBox convars,SuspensionPoint sp, Pendulum pendulum)
@@ -114,6 +129,17 @@ namespace PendulumProject
 
             startInfo.FileName = @"C:\Users\Siarhei.Kharlap\Downloads\pdf-test.pdf";
             process.Start();
+        }
+
+        private void ShowError(string errorMessage)
+        {
+            MessageBox.Show(errorMessage, "Error",
+                MessageBoxButtons.OK, MessageBoxIcon.Error);
+        }
+
+        private void Form1_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            if(this.isStarted) this.HandleStop_Click(sender, e);
         }
     }
 }

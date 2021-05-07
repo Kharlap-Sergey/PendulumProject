@@ -44,18 +44,20 @@ namespace PendulumProject
             // 
             this.pendulumPictureBox.BackColor = System.Drawing.Color.Transparent;
             this.pendulumPictureBox.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.pendulumPictureBox.Location = new System.Drawing.Point(211, 27);
+            this.pendulumPictureBox.Location = new System.Drawing.Point(281, 33);
+            this.pendulumPictureBox.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.pendulumPictureBox.Name = "pendulumPictureBox";
-            this.pendulumPictureBox.Size = new System.Drawing.Size(250, 350);
+            this.pendulumPictureBox.Size = new System.Drawing.Size(333, 430);
             this.pendulumPictureBox.TabIndex = 1;
             this.pendulumPictureBox.TabStop = false;
             // 
             // rePendulumPictureBox
             // 
             this.rePendulumPictureBox.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.rePendulumPictureBox.Location = new System.Drawing.Point(501, 27);
+            this.rePendulumPictureBox.Location = new System.Drawing.Point(668, 33);
+            this.rePendulumPictureBox.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.rePendulumPictureBox.Name = "rePendulumPictureBox";
-            this.rePendulumPictureBox.Size = new System.Drawing.Size(250, 350);
+            this.rePendulumPictureBox.Size = new System.Drawing.Size(333, 430);
             this.rePendulumPictureBox.TabIndex = 3;
             this.rePendulumPictureBox.TabStop = false;
             // 
@@ -69,7 +71,7 @@ namespace PendulumProject
             this.toolStripButton1});
             this.toolStrip1.Location = new System.Drawing.Point(0, 0);
             this.toolStrip1.Name = "toolStrip1";
-            this.toolStrip1.Size = new System.Drawing.Size(25, 450);
+            this.toolStrip1.Size = new System.Drawing.Size(30, 554);
             this.toolStrip1.TabIndex = 4;
             this.toolStrip1.Text = "toolStrip1";
             // 
@@ -79,7 +81,7 @@ namespace PendulumProject
             this.toolStripButton2.Image = global::PendulumProject.Properties.Resources.Start_icon;
             this.toolStripButton2.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.toolStripButton2.Name = "toolStripButton2";
-            this.toolStripButton2.Size = new System.Drawing.Size(22, 24);
+            this.toolStripButton2.Size = new System.Drawing.Size(27, 24);
             this.toolStripButton2.Text = "start";
             this.toolStripButton2.Click += new System.EventHandler(this.HandleStart_Click);
             // 
@@ -89,7 +91,7 @@ namespace PendulumProject
             this.toolStripButton3.Image = global::PendulumProject.Properties.Resources.CSS_Cursor_12_512;
             this.toolStripButton3.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.toolStripButton3.Name = "toolStripButton3";
-            this.toolStripButton3.Size = new System.Drawing.Size(22, 24);
+            this.toolStripButton3.Size = new System.Drawing.Size(27, 24);
             this.toolStripButton3.Text = "stop";
             this.toolStripButton3.Click += new System.EventHandler(this.HandleStop_Click);
             // 
@@ -99,20 +101,22 @@ namespace PendulumProject
             this.toolStripButton1.Image = global::PendulumProject.Properties.Resources.help;
             this.toolStripButton1.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.toolStripButton1.Name = "toolStripButton1";
-            this.toolStripButton1.Size = new System.Drawing.Size(22, 24);
+            this.toolStripButton1.Size = new System.Drawing.Size(27, 24);
             this.toolStripButton1.Text = "help";
             this.toolStripButton1.Click += new System.EventHandler(this.HelpBtnClick_Click);
             // 
             // Form1
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 450);
+            this.ClientSize = new System.Drawing.Size(1067, 554);
             this.Controls.Add(this.toolStrip1);
             this.Controls.Add(this.rePendulumPictureBox);
             this.Controls.Add(this.pendulumPictureBox);
+            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.Name = "Form1";
             this.Text = "Курсова работа студента группы 10701219 Харлапа С. А,";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.Form1_FormClosing);
             ((System.ComponentModel.ISupportInitialize)(this.pendulumPictureBox)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.rePendulumPictureBox)).EndInit();
             this.toolStrip1.ResumeLayout(false);
