@@ -1,14 +1,22 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.Specialized;
 using System.ComponentModel;
 using System.Data;
+using System.Data.OleDb;
 using System.Diagnostics;
 using System.Drawing;
+using System.Drawing.Imaging;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using IronXL;
+using Spire.Doc;
+using Spire.Doc.Documents;
+using Spire.Doc.Fields;
 
 namespace PendulumProject
 {
@@ -18,10 +26,16 @@ namespace PendulumProject
         private EventLoop eventLoop;
         private double suspensionPointRadius = 2;
         private bool isStarted = false;
+        private DataTable preData;
+        private double A;
+        private double L;
+        private double W;
+        private double F;
 
         public Form1()
         {
             InitializeComponent();
+            this.ReadExcel("./data", "xlsx");
         }
 
         private void HandleStart_Click(object sender, EventArgs e)
@@ -127,7 +141,7 @@ namespace PendulumProject
             ProcessStartInfo startInfo = new ProcessStartInfo();
             process.StartInfo = startInfo;
 
-            startInfo.FileName = @"C:\Users\Siarhei.Kharlap\Downloads\pdf-test.pdf";
+            startInfo.FileName = @"D:\Project\Pendulum\help.pdf";
             process.Start();
         }
 
@@ -140,6 +154,46 @@ namespace PendulumProject
         private void Form1_FormClosing(object sender, FormClosingEventArgs e)
         {
             if(this.isStarted) this.HandleStop_Click(sender, e);
+        }
+
+        public void ReadExcel(string fileName, string fileExt)
+        {
+            WorkBook workbook = WorkBook.Load("data.xlsx");
+            WorkSheet sheet = workbook.WorkSheets.First();
+            this.A = sheet["A2"].DoubleValue;
+            this.F = sheet["C2"].DoubleValue;
+            this.W = sheet["B2"].DoubleValue;
+            this.L = sheet["D2"].DoubleValue;
+        }
+
+        private void MakeScreenShotAndInsertIntoDockImageLog_Click(object sender, EventArgs e)
+        {
+            Rectangle bounds = this.Bounds;
+            using (Bitmap bitmap = new Bitmap(bounds.Width, bounds.Height))
+            {
+                using (Graphics g = Graphics.FromImage(bitmap))
+                {
+                    g.CopyFromScreen(new System.Drawing.Point(bounds.Left, bounds.Top), System.Drawing.Point.Empty, bounds.Size);
+                }
+                //bitmap.Save("./test.jpg", ImageFormat.Jpeg);
+                
+
+                //Create Document
+                Document document = new Document("./Image.docx");
+                var s = document.AddSection();
+                Paragraph p = s.AddParagraph();
+
+                //Insert Image and Set Its Size
+                p.AppendComment($"create at {DateTime.Now}");
+                DocPicture Pic = p.AppendPicture(bitmap);
+                Pic.Width = 750;
+                Pic.Height = 468;
+
+                //Save and Launch
+                document.SaveToFile("Image.docx", FileFormat.Docx);
+                document.Close();
+                //System.Diagnostics.Process.Start("Image.docx");
+            }
         }
     }
 }
